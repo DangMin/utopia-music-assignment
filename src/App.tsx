@@ -62,12 +62,12 @@ function App() {
     }
 
     return (
-        <div className="">
+        <div className="w-full h-full">
             <Header />
             <div className="container pv-8">
                 <h4 className="text-center">Select region and click on the countries you want to highlight</h4>
 
-                <div className="relative flex justify-center gap-2 mv-4">
+                <div className="continent_buttons_container">
                     {continents &&
                         Array.from(continents).map((continent) => (
                             <ContinentButton

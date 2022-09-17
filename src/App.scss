@@ -109,7 +109,7 @@ $flex-alignments: (
 $flex-wraps: 'nowrap', 'wrap', 'wrap-reverse';
 
 @each $value in $flex-wraps {
-    .fl-#{$value} {
+    .flex-#{$value} {
         flex-wrap: #{$value};
     }
 }
@@ -194,6 +194,10 @@ $font-weights: '100', '200', '300', '400', '500', '600', '700', '800', '900', 'l
     border-radius: 100%;
 }
 
+.flex-1 {
+    flex: 1;
+}
+
 /** **/
 .main {
     max-width: 1024px;
@@ -209,12 +213,17 @@ $font-weights: '100', '200', '300', '400', '500', '600', '700', '800', '900', 'l
 
 .container {
     @extend .m-auto;
+    width: auto;
     max-width: 720px;
 }
 
 .countries__list {
     @extend .grid;
     grid-template-columns: repeat(4, auto);
+}
+
+.continent_buttons_container {
+    @extend .relative, .flex, .flex-wrap, .justify-center, .gap-2, .mv-4;
 }
 
 .continent__button {
@@ -233,4 +242,20 @@ $font-weights: '100', '200', '300', '400', '500', '600', '700', '800', '900', 'l
 
 .filter-box {
     grid-template-columns: 1fr 30%;
+}
+
+$small-breakpoint: 480px;
+
+@media (max-width: $small-breakpoint) {
+    .container {
+        padding: 0 12px 20px;
+    }
+    .continent__button {
+        width: auto;
+        flex-basis: 30%;
+    }
+
+    .countries__list {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
