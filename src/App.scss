@@ -1,0 +1,236 @@
+$spacings: (
+    0: 0,
+    1: 4,
+    2: 8,
+    3: 12,
+    4: 16,
+    5: 20,
+    6: 24,
+    7: 36,
+    8: 48,
+);
+$sides: (
+    't': 'top',
+    'r': 'right',
+    'b': 'bottom',
+    'l': 'left',
+);
+
+$axises: 'h', 'v';
+
+@each $index, $value in $spacings {
+    .m-#{$index} {
+        margin: #{$value}px;
+    }
+
+    .p-#{$index} {
+        padding: #{$value}px;
+    }
+
+    .gap-#{$index} {
+        gap: #{$value}px;
+    }
+
+    .rounded-#{$index} {
+        border-radius: #{$index}px;
+    }
+
+    @each $axis in $axises {
+        @if $axis == 'v' {
+            .m#{$axis}-#{$index} {
+                margin-top: #{$value}px;
+                margin-bottom: #{$value}px;
+            }
+
+            .p#{$axis}-#{$index} {
+                padding-top: #{$value}px;
+                padding-bottom: #{$value}px;
+            }
+        } @else if $axis == 'h' {
+            .m#{$axis}-#{$index} {
+                margin-left: #{$value}px;
+                margin-right: #{$value}px;
+            }
+
+            .p#{$axis}-#{$index} {
+                padding-left: #{$value}px;
+                padding-right: #{$value}px;
+            }
+        }
+    }
+
+    @each $side, $name in $sides {
+        .m#{$side}-#{$index} {
+            margin-#{$name}: #{$value}px;
+        }
+
+        .p#{$side}-#{$index} {
+            padding-#{$name}: #{$value}px;
+        }
+    }
+}
+
+$displays: 'block', 'inline', 'inline-block', 'flex', 'grid';
+
+@each $display in $displays {
+    .#{$display} {
+        display: #{$display};
+    }
+}
+
+$flex-justifications: (
+    'center': 'center',
+    'start': 'start',
+    'end': 'end',
+    'between': 'space-between',
+    'around': 'space-around',
+    'evenly': 'space-evenly',
+);
+
+@each $key, $value in $flex-justifications {
+    .justify-#{$key} {
+        justify-content: #{$value};
+    }
+}
+
+$flex-alignments: (
+    'start': 'flex-start',
+    'end': 'flex-end',
+    'center': 'center',
+    'stretch': 'stretch',
+);
+
+@each $key, $value in $flex-alignments {
+    .items-#{$key} {
+        align-items: #{$value};
+    }
+}
+
+$flex-wraps: 'nowrap', 'wrap', 'wrap-reverse';
+
+@each $value in $flex-wraps {
+    .fl-#{$value} {
+        flex-wrap: #{$value};
+    }
+}
+
+$pink: '#E3127E';
+$colors: (
+    'red': 'red',
+    'black': '#000',
+    'white': '#fff',
+    'pink': $pink,
+);
+
+@each $name, $color in $colors {
+    .#{$name} {
+        color: #{$color};
+    }
+    .bg-#{$name} {
+        background-color: #{$color};
+    }
+
+    .bd-#{$name} {
+        border-color: #{$color};
+    }
+}
+
+$positions: 'relative', 'absolute';
+
+@each $position in $positions {
+    .#{$position} {
+        position: #{$position};
+    }
+}
+
+$text-alignments: 'left', 'right', 'center', 'justify';
+@each $t-align in $text-alignments {
+    .text-#{$t-align} {
+        text-align: #{$t-align};
+    }
+}
+
+$font-sizes: (
+    'small': 'small',
+    'xx-small': 'xx-small',
+    'x-small': 'x-small',
+    'medium': 'medium',
+    'large': 'large',
+    'x-large': 'x-large',
+    'xx-large': 'xx-large',
+    'xxx-large': 'xxx-large',
+);
+@each $fkey, $fsize in $font-sizes {
+    .text-#{$fkey} {
+        font-size: #{$fsize};
+    }
+}
+
+$font-weights: '100', '200', '300', '400', '500', '600', '700', '800', '900', 'light', 'lighter', 'normal', 'bold',
+    'bolder';
+@each $fweight in $font-weights {
+    .font-#{$fweight} {
+        font-weight: #{$fweight};
+    }
+}
+
+.h-full {
+    height: 100%;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.m-auto {
+    margin: auto;
+}
+
+.rounded-full {
+    border-radius: 100%;
+}
+
+/** **/
+.main {
+    max-width: 1024px;
+    margin: auto;
+}
+
+.header {
+    &__logo {
+        aspect-ratio: 1/1;
+        max-height: 80px;
+    }
+}
+
+.container {
+    @extend .m-auto;
+    max-width: 720px;
+}
+
+.countries__list {
+    @extend .grid;
+    grid-template-columns: repeat(4, auto);
+}
+
+.continent__button {
+    @extend .pv-4, .bd-pink, .pink, .rounded-4, .pointer;
+    border: 2px solid #{$pink};
+    width: 15%;
+    outline: none;
+    font-size: large;
+    font-weight: bold;
+
+    &--selected {
+        background-color: #{$pink} !important;
+        color: white !important;
+    }
+}
+
+.filter-box {
+    grid-template-columns: 1fr 30%;
+}
