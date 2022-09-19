@@ -92,3 +92,34 @@ describe('Application testing', () => {
         expect((container as HTMLElement).getElementsByClassName('country')?.length).toBe(2)
     })
 })
+
+describe('render application with error fetching countries', () => {
+    beforeEach(() => {
+        global.fetch = jest.fn().mockImplementation(() =>
+            Promise.resolve({
+                ok: false,
+            })
+        )
+    })
+
+    afterEach(() => {
+        jest.resetAllMocks()
+    })
+
+    test('render application with error fetching countries', async () => {
+        let container: unknown
+        await act(async () => {
+            const view = await render(<App />)
+
+            container = view.container
+        })
+
+        const errorMessage = await screen.findByText(/an error has occurred while loading countries/i)
+        expect(errorMessage).toBeInTheDocument()
+        expect(screen.getByText(/retry/i)).toBeInTheDocument()
+
+        await userEvent.click(screen.getByText(/retry/i))
+        expect(global.fetch).toBeCalled()
+        expect(global.fetch).toHaveBeenCalledTimes(1)
+    })
+})

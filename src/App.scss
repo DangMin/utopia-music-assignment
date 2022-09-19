@@ -78,6 +78,10 @@ $displays: 'block', 'inline', 'inline-block', 'flex', 'grid';
     }
 }
 
+.flex-column {
+    flex-direction: column;
+}
+
 $flex-justifications: (
     'center': 'center',
     'start': 'start',
@@ -257,5 +261,18 @@ $small-breakpoint: 480px;
 
     .countries__list {
         grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.inline-button {
+    border: none;
+    background-color: transparent;
+    font-size: x-large;
+    font-weight: bolder;
+    color: #{$pink};
+
+    &:hover {
+        cursor: pointer;
+        text-decoration: underline;
     }
 }
